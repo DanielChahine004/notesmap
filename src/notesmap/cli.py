@@ -47,7 +47,7 @@ def _doi_of(entry) -> str:
 
 
 def _bib_check(cfg, notes) -> tuple[list[str], list[str]]:
-    """Cross-check the notes' \\doi{} against the thesis bibliography.
+    """Cross-check the notes' \\doi{} against a bibliography ([check] bib).
 
     The two are written at different times and nothing else connects them, so
     a paper can be noted under one DOI and cited under another, or noted and

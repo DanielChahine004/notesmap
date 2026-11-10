@@ -540,7 +540,9 @@ class Board:
                  "f": {k: r.get(f"_{spec.get('flag_from', {}).get(k, k)} flag", "") for k in keys}} for r in data]
         reference = [r for r in rows if r["set"] == spec.get("reference")]
         rows = [r for r in rows if r["set"] != spec.get("reference")]
-        props = {"axes": axes, "rows": rows, "reference": reference, "flags": spec.get("flags", {}),
+        props = {"axes": axes, "rows": rows, "reference": reference,
+                 "reference_label": spec.get("reference_label", spec.get("reference", "reference")),
+                 "flags": spec.get("flags", {}),
                  "bus": key, "selInitial": _sel_initial(data, spec, name),
                  "simSet": spec.get("simulated", ""), "scale": self.map_w / 4500 if self.map_mode else 1.0}
         if have is None:

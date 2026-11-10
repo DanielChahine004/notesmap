@@ -1,6 +1,6 @@
 """A BibTeX file, read for the one thing `notesmap check` needs: key <-> DOI.
 
-The notes and the thesis keep separate bibliographies -- a `\\doi{}` in a note
+Notes and a paper or thesis keep separate bibliographies -- a `\\doi{}` in a note
 and an entry in `references.bib` are written at different times and nothing
 connects them, so the same paper can end up noted under one DOI and cited under
 another, or noted and never cited at all. This reads the `.bib` well enough to

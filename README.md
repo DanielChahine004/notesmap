@@ -9,10 +9,18 @@ same `.tex` also builds as a PDF.
 The notes file is the only source of truth. Edit it, and every open board
 updates in place within a few seconds.
 
+Built on [danvas](https://github.com/DanielChahine004/danvas), a browser
+canvas driven from Python. Written for a PhD literature review of PET detector
+programmes, which is why the examples are about PET; nothing in it depends on
+the field.
+
 ## Start a new set of notes
 
+Needs Python 3.11 or later and [uv](https://docs.astral.sh/uv/).
+
 ```
-uv tool install ./tools/notesmap      # or: uv run --project tools/notesmap notesmap ...
+uv tool install git+https://github.com/DanielChahine004/notesmap   # or, from a clone: uv tool install .
+mkdir my-notes && cd my-notes
 notesmap init notes                   # notes/main.tex, notes/notesmap.sty, notes/img/, ./notesmap.toml
 notesmap check                        # lint: missing images, dangling refs, unplaced programmes
 notesmap check --gaps --strict         # also incomplete notes; non-zero exit, for CI
@@ -136,13 +144,13 @@ meaningful instead of going permanently red the first time a deadline lapses.
 
 ## Checking the board
 
-`serve --qc DIR` (on under `pixi run notes-lab`, with `DIR` = `build/notes-qc`)
-answers requests written to `DIR/request`, so a script or an agent can check the
+`serve --qc DIR` answers requests written to `DIR/request`, so a script or an agent can check the
 board without driving a browser:
 
 ```bash
-echo layout > build/notes-qc/request                  # -> layout.json
-echo "shot Leaderboard_Radar_radar" > build/notes-qc/request   # -> layout.json + shot.png
+notesmap serve --map --qc qc &                         # in one shell
+echo layout > qc/request                              # -> qc/layout.json
+echo "shot Example" > qc/request                       # -> qc/layout.json + qc/shot.png
 ```
 
 `layout.json` holds every panel's measured box, each map pin, and the leaders that
@@ -225,6 +233,7 @@ annotated copy.
 | `[tables.<Key>]` | turns that programme's tabulars into one sortable, filterable table panel at `at`; `flags` spells out a letter after a number (`1.4 p`) as a basis column, `derive` adds category columns from keywords; each row links to its paper's DOI and PDF, found from its first cell read as "Surname Year" (`keys` maps any other first cell to a note key) |
 | `[tables.<Key>] view = "radar"` | instead of a table: two row sets on shared numeric axes (`demand`, `supply` name their headings) drawn as a radar for a chosen pair, with a fit grid for every pair |
 | `[tables.<Key>] view = "detectors"` | the rows of a table panel on a radar of chosen lower-is-better columns (`axes` maps column to label), each linear in its own units from 0 to `max` at the rim; `reference` names the set drawn as dotted outlines, `simulated` the set drawn dashed, `alternates` an axis a button swaps, `initial` the rows drawn at first. `selector` names the table panel whose tick boxes choose what is drawn; that table also gets a Star column (the row's size on these axes) |
+| `[tables.<Key>] reference_label` | the label on the radar's tick box for the `reference` set; defaults to the set's name |
 | `[tables.<Key>] panel` | the programme panel shows only these paragraphs (by heading); the rest stays in the PDF |
 | `[server]` | port, and the companion editor the map links to |
 
@@ -298,3 +307,9 @@ beside `notesmap.toml`, listed in `[latex] plugins`, with
 | `layout.py` | handles the map projection and automatic panel placement |
 | `watch.py` | polls, waits for changes to settle, respects locks, keeps the last good version |
 | `cli.py` | provides `serve`, `check` and `init` |
+
+## Citing and licence
+
+If notesmap helps your work, `CITATION.cff` has the citation; GitHub's
+"Cite this repository" button formats it. Licensed under the terms in
+`LICENSE`.

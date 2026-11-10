@@ -659,9 +659,9 @@ function Component({ props }) {
           {(alt[i] ? a.alt : a).label} &#8644;</button> : null)}
         {refs.length ? <label className="refbox"><input type="checkbox" checked={refOn.length === refs.length}
           ref={el => { if (el) el.indeterminate = refOn.length > 0 && refOn.length < refs.length; }}
-          onChange={e => setRefOn(e.target.checked ? refs.map((_, k) => k) : [])} />clinical</label> : null}
+          onChange={e => setRefOn(e.target.checked ? refs.map((_, k) => k) : [])} />{p.reference_label}</label> : null}
         <button onClick={() => setPicked(s => s.filter(id => refIds.includes(id)))}>clear</button>
-        <span className="n">{sel.length} shown; tick rows in the leaderboard table to draw them</span></div>
+        <span className="n">{sel.length} shown; tick rows in the table to draw them</span></div>
       <div className="cols">
         <div className="plot">
           <svg viewBox="-130 -60 720 490">

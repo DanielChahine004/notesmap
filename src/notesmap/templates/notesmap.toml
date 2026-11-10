@@ -37,7 +37,7 @@ loose_title = "Papers without a programme"
 [publish]
 # what the map leaves out; the PDF keeps all of it. \aside{...} sentences are
 # always left out
-hide_sections = []            # e.g. ["why it matters", "relevance to this thesis"]
+hide_sections = []            # e.g. ["why it matters", "relevance to my work"]
 hide_gaps = false
 hide_programmes = []
 show_loose = true
