@@ -16,7 +16,8 @@ the field.
 
 ## Start a new set of notes
 
-Needs Python 3.11 or later and [uv](https://docs.astral.sh/uv/).
+Needs [uv](https://docs.astral.sh/uv/), which fetches Python itself
+(Windows: `winget install astral-sh.uv`; macOS/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`).
 
 ```
 uv tool install git+https://github.com/DanielChahine004/notesmap   # or, from a clone: uv tool install .
@@ -87,6 +88,23 @@ name is the entry's title up to ` -- `, for example "Carra et al. 2022".
 Each `\begin{...}` and `\end{...}` goes on its own line. A paper outside any
 programme goes on a shelf of its own. A programme without `\location` is
 shelved too, and `notesmap check` lists it.
+
+## With Zotero
+
+Use each paper's Zotero citation key as its note key (`\begin{papernote}{...}{Moskal2014}`),
+then point notesmap at what Zotero keeps on disk:
+
+```toml
+[check]
+bib = "library.bib"       # Better BibTeX export with "Keep updated" ticked
+[pdfs]
+dir = "papers"            # where ZotMoov files PDFs, renamed to {{ citationKey }}
+url = "https://github.com/you/papers/blob/main/{key}.pdf"
+```
+
+`notesmap check` then flags a note whose DOI Zotero holds under another key, and
+each card links to its PDF. Keeping `papers/` in a private git repo puts the
+PDFs online without Zotero's storage limit.
 
 ## Keeping your own working off a public map
 

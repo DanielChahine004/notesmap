@@ -71,6 +71,9 @@ def _bib_check(cfg, notes) -> tuple[list[str], list[str]]:
         carried += 1
         if doi in bib.by_doi:
             cited += 1
+            if e.key not in bib.by_doi[doi]:
+                problems.append(f"{e.file}:{e.line}: {e.key}: {path.name} has this doi as "
+                                f"{', '.join(bib.by_doi[doi])}; use that key so the PDF link finds it")
         else:
             problems.append(f"{e.file}:{e.line}: {e.key}: doi {doi} is in no {path.name} entry")
     for doi, keys in sorted(bib.duplicate_dois.items()):
