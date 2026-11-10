@@ -8,6 +8,7 @@ authors:
     affiliation: University of Technology Sydney
 repository-code: "https://github.com/DanielChahine004/notesmap"
 version: 0.1.0
+license: MIT
 keywords:
   - literature review
   - LaTeX

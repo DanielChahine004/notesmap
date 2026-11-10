@@ -311,5 +311,6 @@ beside `notesmap.toml`, listed in `[latex] plugins`, with
 ## Citing and licence
 
 If notesmap helps your work, `CITATION.cff` has the citation; GitHub's
-"Cite this repository" button formats it. Licensed under the terms in
-`LICENSE`.
+"Cite this repository" button formats it. MIT licence (`LICENSE`).
+It depends on danvas, which is AGPL-3.0: notesmap's own code stays MIT, but
+serving it to others over a network brings danvas's AGPL terms into play.

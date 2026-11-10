@@ -3,6 +3,9 @@ name = "notesmap"
 version = "0.1.0"
 description = "Render LaTeX research-programme notes as a live, zoomable board or world map"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Daniel Chahine" }]
 requires-python = ">=3.11"
 dependencies = ["danvas>=0.9,<0.10", "pillow"]
 
