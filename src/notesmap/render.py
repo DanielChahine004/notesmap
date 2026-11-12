@@ -326,9 +326,10 @@ class Board:
 
             def park(m: re.Match) -> str:
                 cls = ' class="claim"' if "↗" in m[1] else ""
-                links.append(f'<a{cls} href="{m[2]}" target="_blank" rel="noopener noreferrer">{m[1]}</a>')
+                title = f' title="{m[3]}"' if m[3] else ""
+                links.append(f'<a{cls}{title} href="{m[2]}" target="_blank" rel="noopener noreferrer">{m[1]}</a>')
                 return f"\x00{len(links) - 1}\x00"
-            s = re.sub(r"(?<!!)\[([^\]]+)\]\((https?://[^)\s]+)\)", park, s)
+            s = re.sub(r'(?<!!)\[([^\]]+)\]\((https?://[^)\s]+)(?: "([^"]*)")?\)', park, s)
             s = re.sub(r"https?://[^\s<\x00]*[^\s<.,;:)\x00]",
                        lambda m: f'<a href="{m[0]}" target="_blank" rel="noopener noreferrer">{m[0]}</a>', s)
             return re.sub("\x00(\\d+)\x00", lambda m: links[int(m[1])], s)

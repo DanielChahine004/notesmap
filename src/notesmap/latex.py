@@ -201,7 +201,11 @@ class Converter:
             return ""
         n = self.claims.get(ref)
         label = f"p.{n['page']}" if n and n.get("page") else "source"
-        return f" [{label} ↗]({self.claim_url.format(key=key, id=cid)})"
+        # the quote rides along as the link's title, so a reader sees the source's words on hover
+        quote = ((n or {}).get("quote") or {}).get("exact") or (n or {}).get("label") or ""
+        quote = re.sub(r'["*_`\\$\[\]]', "", " ".join(quote.split()))[:300]
+        title = f' "{key}, p.{n["page"]}: {quote}"' if quote else ""
+        return f" [{label} ↗]({self.claim_url.format(key=key, id=cid)}{title})"
 
     def _ref(self, target: str) -> str:
         key = target.split(":", 1)[-1]
