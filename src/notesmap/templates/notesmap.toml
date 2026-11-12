@@ -60,6 +60,13 @@ show_loose = true
 width = 9000
 unplaced = [400, 3500]        # where programmes without \location are shelved
 
+
+[claims]
+# \claim{Key/id} after a sentence links it to the annotation that quotes the
+# paper saying it, e.g. a paperstore's annotations/ folder and viewer
+# dir = "papers/annotations"
+# url = "https://you.github.io/paperstore/#/{key}/{id}"
+
 [server]
 port = 8000
 # a companion editor for the notes. Set it and the map carries a signpost
