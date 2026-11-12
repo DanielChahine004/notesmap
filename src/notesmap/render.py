@@ -377,6 +377,9 @@ class Board:
     def _snippet(self, e: Entry) -> str:
         text = re.sub(r"\*\*[^*]+\*\*\n\n", "", e.overview(self.conv, self.cfg.overview_sections), count=1)
         text = re.sub(r"!\[\]\([^)]*\)", "", text)
+        # a one-line summary is plain text: claim chips go, other links keep their words
+        text = re.sub(r' ?\[[^\]]*↗\]\([^)"]*(?: "[^"]*")?\)', "", text)
+        text = re.sub(r'\[([^\]]+)\]\(https?://[^)"\s]*(?: "[^"]*")?\)', r"\1", text)
         plain = re.sub(r"\*\*\[gap:.*?\]\*\*", "", text, flags=re.S).strip()
         if not plain:   # an unread paper: the gap is all there is, so show it
             plain = re.sub(r"\*\*\[gap:\s*(.*?)\]\*\*", r"\1", text, flags=re.S).strip()
