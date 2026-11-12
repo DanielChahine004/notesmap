@@ -83,6 +83,27 @@ matters"), `hide_gaps` drops `\gap{}`, `hide_programmes` drops whole
 programmes. `\aside{...}` marks a single sentence to keep off the map. An arrow
 survives only if a shown sentence still makes the reference.
 
+## Publishing the map without a server
+
+The map can be a link instead of a running `notesmap serve`: danvas's static
+page builds it in each reader's browser from the notes in your repository, and
+redraws within a minute of a push. Add a `danvas.toml` beside `notesmap.toml`:
+
+```toml
+[app]
+entry = "notesmap.static:app"
+requires = ["github:DanielChahine004/notesmap@main"]   # this repo; pin a tag or commit to hold a version
+files = ["notesmap.toml"]                              # notesmap reads the rest from it
+```
+
+and open `https://danielchahine004.github.io/danvas/?repo=you/your-notes`. To run
+a copy of notesmap you have changed, keep it in your repository and replace
+`requires` with `paths = ["path/to/notesmap/src"]`. Each reader sees their own
+copy of the board (what they draw stays in their browser), and the companion
+editor link is dropped when it points at your own machine. A private repository
+needs a GitHub token for now; see danvas's
+[web/README.md](https://github.com/DanielChahine004/danvas/blob/main/web/README.md).
+
 ## Sharing and editing
 
 - **Split the notes.** `\input{programmes/ghent}` per programme; notesmap
