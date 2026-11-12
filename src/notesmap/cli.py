@@ -120,7 +120,9 @@ def cmd_check(args) -> int:
         for r in e.refs(cfg.ref_prefixes):
             if r not in keys:
                 problems.append(f"{e.file}:{e.line}: {e.key}: \\ref to unknown key {r!r}")
-        if cfg.claim_dir:
+        # claims are checked only where the annotations are (a private clone,
+        # absent in CI): elsewhere every claim would read as missing
+        if cfg.claim_dir and cfg.resolve(cfg.claim_dir).is_dir():
             for c in re.findall(r"\\claim\{([^}]*)\}", "\n".join(e.body)):
                 if c.strip() not in conv.claims:
                     problems.append(f"{e.file}:{e.line}: {e.key}: \\claim{{{c}}}: no such annotation in {cfg.claim_dir}")
