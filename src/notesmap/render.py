@@ -31,6 +31,12 @@ PITCH, ROW_GAP = PANEL_W + 40, 100
 PIN_D = 38                   # the marker's size, and the room a panel leaves it
 
 
+def _image_can_stretch() -> bool:
+    """danvas's image panel scales a picture up to the panel (fit="fill"), from 0.9.2."""
+    from danvas.components import image
+    return "pc-fill" in getattr(image, "_IMG_CSS", "")
+
+
 
 def _row_id(r: dict, first: str) -> str:
     """A table row's identity across panels: its set, first column and detector."""
@@ -595,10 +601,16 @@ class Board:
     # --- placement ----------------------------------------------------------------
 
     def _draw_map(self) -> None:
-        from PIL import Image
         src = self.cfg.resolve(self.cfg.map_image) if self.cfg.map_image else \
             Path(__file__).parent / "assets" / "world-blue-marble.jpg"
         w, h = self.map_w, self.map_w // 2
+        if _image_can_stretch():
+            # the browser scales the picture to the panel: enlarging it here
+            # adds no detail, and a 9000-pixel map is more than a phone can hold
+            # (an iPhone reloads the tab, over and over)
+            self.canvas.image(src.read_bytes(), name="world", w=w, h=h, x=0, y=0, fit="fill", decorative=True)
+            return
+        from PIL import Image
         cache = Path(tempfile.gettempdir()) / "notesmap" / f"{src.stem}-{src.stat().st_mtime_ns}-{w}.jpg"
         if not cache.exists():   # the image panel shows pixels 1:1, so scale once and keep it
             cache.parent.mkdir(parents=True, exist_ok=True)
