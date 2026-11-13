@@ -32,7 +32,7 @@ def _setup(args):
     for name, template in cfg.macros.items():
         conv.add_template(name, template)
     conv.load_plugins(cfg.plugins, cfg.root)
-    conv.claims, conv.claim_url = cfg.claims(), cfg.claim_url
+    conv.claims, conv.claim_url, conv.claim_figures = cfg.claims(), cfg.claim_url, cfg.claim_figures
     parser = load_parser(cfg.parser, cfg.root)
     return cfg, src, conv, parser
 
@@ -123,9 +123,12 @@ def cmd_check(args) -> int:
         # claims are checked only where the annotations are (a private clone,
         # absent in CI): elsewhere every claim would read as missing
         if cfg.claim_dir and cfg.resolve(cfg.claim_dir).is_dir():
-            for c in re.findall(r"\\claim\{([^}]*)\}", "\n".join(e.body)):
-                if c.strip() not in conv.claims:
-                    problems.append(f"{e.file}:{e.line}: {e.key}: \\claim{{{c}}}: no such annotation in {cfg.claim_dir}")
+            for cmd, c in re.findall(r"\\(claim|claimfig)\{([^}]*)\}", "\n".join(e.body)):
+                n = conv.claims.get(c.strip())
+                if n is None:
+                    problems.append(f"{e.file}:{e.line}: {e.key}: \\{cmd}{{{c}}}: no such annotation in {cfg.claim_dir}")
+                elif cmd == "claimfig" and n.get("kind") != "area":
+                    problems.append(f"{e.file}:{e.line}: {e.key}: \\claimfig{{{c}}}: not a box (use \\claim for a quote)")
     for p in notes.programmes:
         if p.location is None and p.key not in cfg.map_fixed:
             problems.append(f"{p.file}:{p.line}: {p.key}: no \\location (shelved on the map)")

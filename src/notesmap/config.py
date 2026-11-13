@@ -51,6 +51,7 @@ class Config:
     # [claims]
     claim_dir: str = ""                          # folder of <Key>.json annotation files (a paperstore's annotations/)
     claim_url: str = ""                          # where \claim{Key/id} links, with {key} and {id}
+    claim_figures: str = ""                      # folder of box pictures, <Key>/<id>.png, from the notes' folder
     # [server]
     port: int = 8000
     title: str = "notesmap"
@@ -96,7 +97,7 @@ _SECTIONS = {
                 "hide_programmes": "hide_programmes"},
     "check": {"bib": "bib"},
     "pdfs": {"dir": "pdf_dir", "url": "pdf_url"},
-    "claims": {"dir": "claim_dir", "url": "claim_url"},
+    "claims": {"dir": "claim_dir", "url": "claim_url", "figures": "claim_figures"},
     "map": {"image": "map_image", "width": "map_width", "unplaced": "unplaced", "fixed": "map_fixed"},
     "server": {"port": "port", "title": "title", "edit_url": "edit_url",
                "edit_label": "edit_label"},

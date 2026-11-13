@@ -127,7 +127,7 @@ Everything lives in `notesmap.toml`; `notesmap init` writes an annotated copy.
 | `[publish]` | what the map leaves out |
 | `[check]` | the bibliography to cross-check |
 | `[pdfs]` | folder of `<key>.pdf` and the URL a card links to |
-| `[claims]` | annotation files and a viewer URL: `\claim{Key/id}` after a sentence links it to the quote that backs it ([paperstore](https://github.com/DanielChahine004/paperstore)), and `check` fails on one that is missing |
+| `[claims]` | annotation files and a viewer URL: `\claim{Key/id}` after a sentence links it to the quote that backs it ([paperstore](https://github.com/DanielChahine004/paperstore)), and `check` fails on one that is missing; `figures` (a folder of `<Key>/<id>.png`, e.g. a paperstore's `figures/`) lets `\claimfig{Key/id}` show a box annotation's picture with its label and page |
 | `[map]` | the map image (any equirectangular image) and its width |
 | `[tables.<Key>]` | turns a programme's tabulars into a sortable table panel, or a radar (`view = "radar"` or `"detectors"`) |
 | `[server]` | port and the companion editor link |

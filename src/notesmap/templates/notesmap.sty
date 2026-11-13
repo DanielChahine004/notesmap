@@ -15,6 +15,9 @@
 %   \claim{Key/id}                      the annotation in a paperstore that backs this
 %                                       sentence: a link on the map, and in the PDF
 %                                       once \claimurl is set
+%   \claimfig{Key/id}                   a box annotation's picture, captioned and cited
+%                                       like \claim; in the PDF where a copy sits in
+%                                       \claimfigdir (a paperstore's figures/)
 %   \ref{prog:key}, \ref{note:key}      a cross-reference, drawn as an arrow
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{notesmap}[2026/09/17 notesmap note environments]
@@ -64,6 +67,12 @@
 % \renewcommand*{\claimurl}{https://you.github.io/paperstore/\#/} to link from the PDF too
 \newcommand*{\claimurl}{}
 \newcommand{\claim}[1]{\ifx\claimurl\empty\else\textsuperscript{\href{\claimurl #1}{$\nearrow$}}\fi}
+% a box annotation's picture, where a copy sits at \claimfigdir/<Key>/<id>.png,
+% then its link; without the picture, just the link
+\newcommand*{\claimfigdir}{figures}
+\newcommand{\claimfig}[1]{\IfFileExists{\claimfigdir/#1.png}%
+	{\begin{center}\includegraphics[width=0.6\linewidth]{\claimfigdir/#1.png}\claim{#1}\end{center}}%
+	{\claim{#1}}}
 \newcommand{\gap}[1]{\textcolor{red}{\textbf{[gap:} #1\textbf{]}}}
 
 \endinput

@@ -134,6 +134,7 @@ class Converter:
         self.macros: dict[str, tuple[int, Handler]] = {}   # insertion order is application order
         self.claims: dict[str, dict] = {}       # "Key/id" -> annotation, for \\claim (set from [claims])
         self.claim_url = ""
+        self.claim_figures = ""                 # folder of <Key>/<id>.png box pictures (set from [claims])
         u = self.unit
         self.add("gap", 1, lambda a: f"**[gap: {self.to_md(a)}]**")
         self.add("aside", 1, lambda a: a)               # shown unless redacted (redact.py)
@@ -158,6 +159,7 @@ class Converter:
         self.add("deadline", 1, lambda a: "")             # ditto, with its [what]
         self.add("doi", 1, lambda a: f"doi:{a}")
         self.add("href", 2, lambda url, a: f"[{a}]({url.strip()})")
+        self.add("claimfig", 1, self._claimfig)
         self.add("claim", 1, self._claim)
         self.add("url", 1, lambda a: a)
 
@@ -206,6 +208,16 @@ class Converter:
         quote = re.sub(r'["*_`\\$\[\]]', "", " ".join(quote.split()))[:300]
         title = f' "{key}, p.{n["page"]}: {quote}"' if quote else ""
         return f" [{label} ↗]({self.claim_url.format(key=key, id=cid)}{title})"
+
+    def _claimfig(self, ref: str) -> str:
+        """\\claimfig{Key/id}: a box annotation's picture, captioned by its label and
+        cited by its page, like \\claim. Where the picture was not fetched (a reader
+        without access to the store), the caption and its link stand alone."""
+        ref = ref.strip()
+        n = self.claims.get(ref) or {}
+        img = f"\n\n![]({self.claim_figures.rstrip('/')}/{ref}.png)\n\n" if self.claim_figures else "\n\n"
+        label = " ".join((n.get("label") or n.get("note") or "Figure").split())
+        return f"{img}*{label}*{self._claim(ref)}\n\n"
 
     def _ref(self, target: str) -> str:
         key = target.split(":", 1)[-1]
