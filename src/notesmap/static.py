@@ -59,6 +59,7 @@ def app(config: str = CONFIG, map: bool = True):
     print(f"[notesmap] {board.apply(notes)}")
     w = cfg.map_width
     view = {"grid": False, "zoom": 0.2, "x": w / 2, "y": w / 4} if map else {"grid": True, "zoom": 0.5}
+    canvas.label("live_test", "LIVE TEST: new notesmap code arrived without a reload")   # TEMPORARY, reverted next commit
     canvas.serve(view=view, ui_inspector=False)
     return lambda: board.apply(parser(src, cfg))
 
