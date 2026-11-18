@@ -6,9 +6,7 @@ an image and a row of paper cards; click a card to unfold its note.
 Cross-references become arrows captioned by the sentence that makes them. The
 same `.tex` builds as a PDF, and every open map updates within seconds of an edit.
 
-Built on [danvas](https://github.com/DanielChahine004/danvas). Written for a
-PhD review of PET detector programmes, hence the PET examples; nothing depends
-on the field.
+Built on [danvas](https://github.com/DanielChahine004/danvas).
 
 [![Download the template, open the folder in the browser, edit main.tex: the map follows](demo/notesmap-demo.gif)](demo/notesmap-demo.mp4)
 
