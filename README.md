@@ -14,32 +14,37 @@ Built on [danvas](https://github.com/DanielChahine004/danvas).
 
 ## Start here (no coding)
 
-**Nothing to install:** open
-[the notesmap page](https://danielchahine004.github.io/danvas/?local=DanielChahine004/notesmap)
-and choose the folder that holds your notes (`main.tex`, `notesmap.sty` and
-the pictures in `img/`). No notes yet? Download
-[the template folder](https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
-(also linked on that page), unzip it, and choose the `notes` folder inside:
-its `main.tex` shows one of everything the notes can hold (a programme with
-a picture, a paper, an arrow between programmes, a conference with a
-deadline, a loose paper), ready to replace with your own. Your files are read by that browser
-tab and never uploaded. In Chrome or Edge the map follows every save, and the
-page offers to reopen the same folder next time; in Firefox or Safari, drop
-the folder on the map again after saving. The first visit takes a little
-while to load Python into the page.
+There are two ways in: the notesmap page, with nothing to install, or this
+repository on your own computer, for the code and everything else.
 
-**Writing in Overleaf:**
-[Start in Overleaf](https://www.overleaf.com/docs?zip_uri=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
-makes a new Overleaf project from the template folder: `main.tex`,
-`notesmap.sty` (which the PDF needs) and `img/`, where pictures go.
-To see the map, link the project to GitHub (Overleaf: Menu → GitHub; a paid
-or institutional Overleaf plan), then open
-`https://danielchahine004.github.io/danvas/?repo=YOU/REPO&with=DanielChahine004/notesmap`
-with your repository's name, or type it into the notesmap page's "Notes on
-GitHub" box. After each **Push to GitHub** in Overleaf, the open map updates
-within about 20 seconds. Pictures on the map must be PNG or JPEG.
+### In the browser: point the page at a folder
 
-**Or run it on your computer**, which also works offline:
+1. **Get a notes folder** holding `main.tex`, `notesmap.sty` and the pictures
+   in `img/`:
+   - **New notes:** download [the template folder](https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
+     and unzip it. Its `main.tex` shows one of everything the notes can hold
+     (a programme with a picture, a paper with one, an arrow between
+     programmes, a conference with a deadline, a loose paper), ready to
+     replace with your own.
+   - **Notes in Overleaf:** **Menu → Download → Source**, and unzip it.
+     ([Start in Overleaf](https://www.overleaf.com/docs?zip_uri=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
+     makes a new Overleaf project from the template.)
+2. Open [the notesmap page](https://danielchahine004.github.io/danvas/?local=DanielChahine004/notesmap)
+   and **choose that folder** (or drop it on the page). The first visit takes
+   a little while to load Python into the page.
+3. **Edit and save `main.tex`:** in Chrome or Edge the map follows every save,
+   and the page offers to reopen the same folder next time. In Firefox or
+   Safari, or after downloading a newer source from Overleaf, drop the folder
+   on the map again.
+
+The files are read by that browser tab and never uploaded. Pictures must be
+PNG or JPEG.
+
+### On your computer: the repository
+
+For the command line, the board view, checks, a bibliography cross-check and
+the rest, clone this repository (or **Code → Download ZIP**). It also works
+offline. Without coding:
 
 1. On GitHub, click **Code → Download ZIP**, and unzip it somewhere you keep work.
 2. Double-click **`Start notesmap.bat`** (Windows) or **`Start notesmap.command`**
