@@ -10,6 +10,10 @@ Built on [danvas](https://github.com/DanielChahine004/danvas). Written for a
 PhD review of PET detector programmes, hence the PET examples; nothing depends
 on the field.
 
+[![Download the template, open the folder in the browser, edit main.tex: the map follows](demo/notesmap-demo.gif)](demo/notesmap-demo.mp4)
+
+*Download the template folder, open it on the notesmap page, edit  and save: the map follows. (The folder dialog and the editor are drawn into the recording; the edits are real saves.) [Full-quality video](demo/notesmap-demo.mp4).*
+
 ## Start here (no coding)
 
 **Nothing to install:** open
