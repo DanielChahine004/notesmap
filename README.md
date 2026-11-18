@@ -10,7 +10,27 @@ Built on [danvas](https://github.com/DanielChahine004/danvas). Written for a
 PhD review of PET detector programmes, hence the PET examples; nothing depends
 on the field.
 
-## Quick start
+## Start here (no coding)
+
+1. On GitHub, click **Code → Download ZIP**, and unzip it somewhere you keep work.
+2. Double-click **`Start notesmap.bat`** (Windows) or **`Start notesmap.command`**
+   (Mac). On Linux, run `start-notesmap.sh`.
+3. The first time, it downloads what it needs (a few minutes, needs the
+   internet). The map then opens in your browser and the `notes` folder opens
+   beside it. Later starts take a couple of seconds.
+4. Open `notes/main.tex` in any text editor and save: the map updates within
+   seconds. To start from notes you already have, replace `notes/main.tex`
+   with yours (keep the name) and put its images in `notes/img/`.
+
+Keep the black window open while you use the map; close it to stop. Nothing is
+installed on your computer: everything downloaded stays in this folder's
+`.notesmap` and `.venv` folders, and deleting the folder removes it all.
+
+Windows may warn that the file comes from the internet: choose **More info →
+Run anyway**. A Mac may refuse to open it: open **System Settings → Privacy &
+Security** and click **Open Anyway**, then double-click it again.
+
+## Quick start (command line)
 
 Install [uv](https://docs.astral.sh/uv/), which brings Python with it
 (Windows: `winget install astral-sh.uv`; macOS/Linux:
