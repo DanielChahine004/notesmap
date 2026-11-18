@@ -12,6 +12,17 @@ on the field.
 
 ## Start here (no coding)
 
+**Nothing to install:** open
+[the notesmap page](https://danielchahine004.github.io/danvas/?local=DanielChahine004/notesmap)
+and choose the folder that holds your notes (or just the `.tex` file), or
+click **Start new notes in a folder**. Your files are read by that browser
+tab and never uploaded. In Chrome or Edge the map follows every save, and the
+page offers to reopen the same folder next time; in Firefox or Safari, drop
+the folder on the map again after saving. The first visit takes a little
+while to load Python into the page.
+
+**Or run it on your computer**, which also works offline:
+
 1. On GitHub, click **Code → Download ZIP**, and unzip it somewhere you keep work.
 2. Double-click **`Start notesmap.bat`** (Windows) or **`Start notesmap.command`**
    (Mac). On Linux, run `start-notesmap.sh`.
