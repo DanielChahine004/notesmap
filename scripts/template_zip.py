@@ -1,5 +1,5 @@
 """Builds notesmap-notes.zip, the downloadable template folder, from
-src/notesmap/templates: notes/main.tex, notes/notesmap.sty, notes/img/example.png.
+src/notesmap/templates: notes/main.tex, notes/notesmap.sty, notes/img/*.png.
 
     python scripts/template_zip.py           # rewrite it
     python scripts/template_zip.py --check   # exit 1 if it is out of date
@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "src" / "notesmap" / "templates"
 OUT = ROOT / "notesmap-notes.zip"
-FILES = ["main.tex", "notesmap.sty", "img/example.png"]
+FILES = ["main.tex", "notesmap.sty", "img/example.png", "img/paper.png"]
 
 
 def build() -> bytes:

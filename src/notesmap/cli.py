@@ -166,7 +166,7 @@ def cmd_init(args) -> int:
     dest = Path(args.dir)
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "img").mkdir(exist_ok=True)
-    for name in ("main.tex", "notesmap.sty", "img/example.png"):
+    for name in ("main.tex", "notesmap.sty", "img/example.png", "img/paper.png"):
         target = dest / name
         if target.exists():
             print(f"kept existing {target}")
