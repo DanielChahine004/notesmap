@@ -3,7 +3,6 @@ __pycache__/
 *.egg-info/
 dist/
 qc/
-.notesmap/
 notes/*.aux
 notes/*.log
 notes/*.out

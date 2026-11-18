@@ -1,6 +1,3 @@
-*.bat text eol=crlf
-*.sh text eol=lf
-*.command text eol=lf
 *.zip binary
 *.png binary
 *.gif binary

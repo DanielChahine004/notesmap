@@ -22,14 +22,8 @@ hold; pictures go in `img/` as PNG or JPEG.
 
 ## On your computer
 
-Download this repository (**Code → Download ZIP**) and double-click
-**`Start notesmap.bat`** (Windows) or **`Start notesmap.command`** (Mac; on
-Linux run `start-notesmap.sh`). The first start downloads what it needs; then
-the map opens and `notes/main.tex` is yours to edit. Everything stays inside
-the folder. If Windows warns, choose **More info → Run anyway**; if a Mac
-refuses, **System Settings → Privacy & Security → Open Anyway**.
-
-With [uv](https://docs.astral.sh/uv/) on the command line:
+For offline use, the board view, `check` and the rest, install it with
+[uv](https://docs.astral.sh/uv/):
 
 ```
 uv tool install git+https://github.com/DanielChahine004/notesmap
