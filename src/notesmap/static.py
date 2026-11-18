@@ -29,7 +29,9 @@ def files(config: str = CONFIG) -> list[str]:
     cfg = tomllib.loads(Path(config).read_text("utf-8")) if Path(config).exists() else {}
     src = cfg.get("source", {}).get("path", "notes/main.tex")
     folder = posixpath.dirname(src)
-    out = [config, folder + "/" if folder else src]
+    # notes at the top of the repo (an Overleaf project's layout): their images
+    # and \input files sit beside them, anywhere, so the page reads it all ("*")
+    out = [config, folder + "/" if folder else "*"]
     out.append(cfg.get("map", {}).get("image"))
     out.append(cfg.get("check", {}).get("bib"))
     claims = cfg.get("claims", {}).get("dir")

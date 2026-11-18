@@ -21,6 +21,17 @@ page offers to reopen the same folder next time; in Firefox or Safari, drop
 the folder on the map again after saving. The first visit takes a little
 while to load Python into the page.
 
+**Writing in Overleaf:**
+[Start in Overleaf](https://www.overleaf.com/docs?snip_uri%5B%5D=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/src/notesmap/templates/main.tex&snip_name%5B%5D=main.tex&snip_uri%5B%5D=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/src/notesmap/templates/notesmap.sty&snip_name%5B%5D=notesmap.sty&main_document=main.tex)
+makes a new Overleaf project with the starter notes (`main.tex`) and
+`notesmap.sty`, which the PDF needs. Put pictures in an `img` folder there.
+To see the map, link the project to GitHub (Overleaf: Menu → GitHub; a paid
+or institutional Overleaf plan), then open
+`https://danielchahine004.github.io/danvas/?repo=YOU/REPO&with=DanielChahine004/notesmap`
+with your repository's name, or type it into the notesmap page's "Notes on
+GitHub" box. After each **Push to GitHub** in Overleaf, the open map updates
+within about 20 seconds. Pictures on the map must be PNG or JPEG.
+
 **Or run it on your computer**, which also works offline:
 
 1. On GitHub, click **Code → Download ZIP**, and unzip it somewhere you keep work.
