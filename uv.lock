@@ -4,19 +4,19 @@ requires-python = ">=3.11"
 
 [[package]]
 name = "danvas"
-version = "0.9.1"
+version = "0.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "orjson" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1f/3c/c96ad4765ec9cd159bae38012c254f2c317f287529643c17951054960f01/danvas-0.9.1.tar.gz", hash = "sha256:e2d6244c46336cf824185ce69c6e959a7172438acdaad06531825e9b46f9d2c9", size = 2568796, upload-time = "2026-10-20T05:40:28.413Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c9/b7/55da4bc28f6a13078aabd08b9e885a6529ff66fa17064200f12de81f0f40/danvas-0.9.2.tar.gz", hash = "sha256:cb34cfe3cf87753645e6b93b2780993c15eb19d2e464f51c5fd556cb215d6920", size = 2577030, upload-time = "2026-11-18T12:09:34.979Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/9e/0747672dc3cbbd43183441842ea069cdb79e0501bd29fe274cbb1929403d/danvas-0.9.1-py3-none-any.whl", hash = "sha256:7f4172c485c6aca38379d24284ee310b8419eb9ee60eadbee7667803f7aa39a5", size = 2435423, upload-time = "2026-10-20T05:40:16.796Z" },
-    { url = "https://files.pythonhosted.org/packages/2f/6f/fac862494154b7442fae7cddefe2ad82725d0eb9481c38174867710e338d/danvas-0.9.1-py3-none-macosx_11_0_arm64.whl", hash = "sha256:caf6ec04e8749d57a08869de4343ba2701d2888e72a08e34e431f381307e63f0", size = 6303377, upload-time = "2026-10-20T05:40:18.932Z" },
-    { url = "https://files.pythonhosted.org/packages/4a/c8/7918ea651302f0af5ce0c44c1462d628f63858fafb88d87540bc417831a0/danvas-0.9.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:7980dfd8d866f5e198d8f3b0946502b81d3cc58e8341cdca091b506aa4eb2c83", size = 6337196, upload-time = "2026-10-20T05:40:21.021Z" },
-    { url = "https://files.pythonhosted.org/packages/bf/06/d15e96d3f57fc48041a484eb51ed55a901b4134f63a3a6e099da54c83be6/danvas-0.9.1-py3-none-manylinux2014_x86_64.whl", hash = "sha256:14e09e21eae8c5b1b8b54161c98ca9d081401165928f8284f67b506bde3b653d", size = 6597311, upload-time = "2026-10-20T05:40:23.143Z" },
-    { url = "https://files.pythonhosted.org/packages/b1/5a/0b16d69466afbbe454afa71b87a38afbce37c4fc868cc41e884f16282f37/danvas-0.9.1-py3-none-win_amd64.whl", hash = "sha256:ac3fdbd57c5474cf99352f2012e5205ae936a880cc038dfeea2a63007c28c197", size = 6427607, upload-time = "2026-10-20T05:40:25.397Z" },
+    { url = "https://files.pythonhosted.org/packages/95/60/169d688ddb5b28aca2479e44cd9356ec27bb5bf9cf3f877a7678b94466e3/danvas-0.9.2-py3-none-any.whl", hash = "sha256:d97e517a6f440ac8279464919e18c5a1a705e3bc3ee40455efe61599b9c8ba39", size = 2443572, upload-time = "2026-11-18T12:09:24.738Z" },
+    { url = "https://files.pythonhosted.org/packages/c5/41/06c4688a483b2f0e56b500aa73a7167760849b60b39af471cfb0c965d529/danvas-0.9.2-py3-none-macosx_11_0_arm64.whl", hash = "sha256:53d84297f1ba875b862dd7c3ef00aab1c83c33ae1543a27bb4b8b1bb95255f34", size = 6314427, upload-time = "2026-11-18T12:09:26.905Z" },
+    { url = "https://files.pythonhosted.org/packages/0a/e2/bb1327a602b284508583f6ee6d711e724ecad5d85de579fc1f2c91bb9562/danvas-0.9.2-py3-none-manylinux2014_aarch64.whl", hash = "sha256:567ccad66699a90adba625d82cf006ff59f483347132eda8f8827ef6122a15b9", size = 6348257, upload-time = "2026-11-18T12:09:28.764Z" },
+    { url = "https://files.pythonhosted.org/packages/27/b4/f10ba0d314c3dbb8d3edd89147f388ccb3c3c97194682978bbf9078a84ad/danvas-0.9.2-py3-none-manylinux2014_x86_64.whl", hash = "sha256:867d57ab273e47c0758bdfe798d93094d41e2363a9939d367b6c1cfe954101c7", size = 6725129, upload-time = "2026-11-18T12:09:30.731Z" },
+    { url = "https://files.pythonhosted.org/packages/b6/a0/0395e2d2c2df14ac5c51f8e7ce166f54afa2b942e62a4c091054d08bb3df/danvas-0.9.2-py3-none-win_amd64.whl", hash = "sha256:2fa5e0ab790f081d49348783dae281ecc31e3163581af11bffbc35345f14f0d0", size = 6447518, upload-time = "2026-11-18T12:09:32.809Z" },
 ]
 
 [[package]]
@@ -30,7 +30,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "danvas", specifier = ">=0.9,<0.10" },
+    { name = "danvas", specifier = ">=0.9.2,<0.10" },
     { name = "pillow" },
 ]
 
