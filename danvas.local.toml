@@ -23,10 +23,3 @@ template = "notesmap-notes.zip"
 [source]
 path = "{main}"
 '''
-
-[local.starter]
-# "Start new notes": copied from this repo into a folder the reader chooses
-"main.tex" = "src/notesmap/templates/main.tex"
-"notesmap.sty" = "src/notesmap/templates/notesmap.sty"
-"img/example.png" = "src/notesmap/templates/img/example.png"
-"img/paper.png" = "src/notesmap/templates/img/paper.png"
