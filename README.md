@@ -38,6 +38,24 @@ notesmap serve --map       # opens the map; edit notes/main.tex and watch it upd
 notesmap check             # missing images, dangling refs, unplaced programmes
 ```
 
+## A link to your map
+
+Keep the notes folder in a GitHub repository and the map has a link that
+opens anywhere, phones included:
+
+1. Make a repository on GitHub and upload your notes folder (**Add file →
+   Upload files**, then drag the folder in), or push it with git. Overleaf's
+   GitHub sync works too.
+2. Open, bookmark or share
+   `https://danielchahine004.github.io/danvas/?repo=YOU/REPO&with=DanielChahine004/notesmap`
+   with your account and repository names. The map updates within a minute
+   of each new commit.
+
+A private repository stays private: the page asks visitors to **Sign in with
+GitHub**, and shows the map only to people who can read the repository (the
+first time, give the danvas sign-in app access to it). Maps you have opened
+are listed under Recent on [the danvas page](https://danielchahine004.github.io/danvas/).
+
 ## Writing notes
 
 ```latex
