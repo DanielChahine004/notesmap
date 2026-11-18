@@ -38,8 +38,42 @@ notesmap serve --map       # opens the map; edit notes/main.tex and watch it upd
 notesmap check             # missing images, dangling refs, unplaced programmes
 ```
 
-The notes format, Zotero, public maps, publishing a map as a link, shared
-editing and every setting are in [docs/advanced.md](docs/advanced.md).
+## Writing notes
+
+```latex
+\usepackage{notesmap}
+
+\begin{programnote}{Group -- what they build}{GroupKey}
+\location{51.05}{3.72}{Ghent, Belgium}   % the pin; [dx,dy] fixes the panel's offset
+\thumb{img/group.png}
+\paragraph{What it is}                   % becomes the lead line
+...
+\paragraph{Why it matters here}
+Shares a detector with \ref{prog:OtherKey}.   % an arrow, captioned by this sentence
+
+\begin{papernote}{Author et al.\ 2023 -- Title}{Author2023}   % the year orders the cards
+Journal 1:2, \doi{10.xxxx/yyyy}.                               % the card's link
+\paragraph{Summary}
+... \gap{still to check}
+\end{papernote}
+\end{programnote}
+
+\begin{confnote}{IEEE NSS/MIC 2027 -- Pasadena}{NSSMIC2027}   % a conference panel
+\location{34.15}{-118.14}{Pasadena, USA}
+\dates{2027-10-30}{2027-11-06}
+\deadline[abstracts]{2027-05-12T23:59:59+02:00}               % counts down live
+\end{confnote}
+```
+
+Put each `\begin` and `\end` on its own line. The text before ` -- ` is the
+name a `\ref` shows. Panels without an offset are placed near their pin,
+keeping leaders from crossing. On the map, drag a panel's corner square to
+move it and its bottom-right grip to resize it.
+
+## More
+
+Zotero, public maps, publishing a map as a link, shared editing and every
+setting are in [docs/advanced.md](docs/advanced.md).
 
 ## Citing and licence
 
