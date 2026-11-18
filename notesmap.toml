@@ -1,0 +1,75 @@
+# notesmap configuration. Every key is optional; paths are relative to this file.
+
+[source]
+# the notes' main file: a local path (a checkout, or a synced or mounted bucket)
+# or an http(s) URL to it
+path = "notes/main.tex"
+poll = 2.0
+# parser = "mynotes:parse"   # a function of your own in mynotes.py beside this file;
+#                            # default: the LaTeX notes format (see the README)
+# while any of these exists beside the main file (or <file>.tex.lock beside a
+# notes file), the board keeps its last good version
+lock_files = [".lock"]
+
+[latex]
+programme_env = "programnote"
+paper_env = "papernote"
+# the heading whose text becomes a panel's lead line, first match wins
+overview_sections = ["what it is", "summary", "why it matters"]
+# your own macros: {1}.. are arguments, {n:unit} maps an siunitx unit,
+# {n:md} converts the argument
+# [latex.macros]
+# kg = "{1} kg"
+# [latex.units]
+# "\\kilo\\gram" = "kg"
+# plugins = ["mylab_macros"]   # a module beside this file with register(converter)
+
+[board]
+# rows for the board view (keys of programmes); anything unlisted goes last
+rows = []
+# programmes whose arrows show only from a card while it is unfolded
+# open_arrows = ["Ideas"]
+# cross-references not to draw, as [source, target]
+prune = []
+loose_key = "loose"
+loose_title = "Papers without a programme"
+
+[publish]
+# what the map leaves out; the PDF keeps all of it. \aside{...} sentences are
+# always left out
+hide_sections = []            # e.g. ["why it matters", "relevance to my work"]
+hide_gaps = false
+hide_programmes = []
+show_loose = true
+
+[check]
+# a bibliography to cross-check \doi{} against, so a paper is not noted under
+# one DOI and cited under another. Unset: the cross-check does not run.
+# bib = "paper.bib"
+# bib = "C:/Users/you/Zotero/library.bib"   # Zotero: a Better BibTeX "Keep updated" export
+
+[pdfs]
+# a paper card links to its PDF when <dir>/<key>.pdf exists; {key} in url is the
+# note's key. Point url somewhere access-controlled if the board is public.
+# dir = "papers"
+# url = "https://github.com/you/papers/blob/main/{key}.pdf"
+# Zotero: dir is the folder ZotMoov files PDFs into, named by citation key
+
+[map]
+# image = "maps/world.jpg"    # an equirectangular image; default: NASA Blue Marble
+width = 9000
+unplaced = [400, 3500]        # where programmes without \location are shelved
+
+
+[claims]
+# \claim{Key/id} after a sentence links it to the annotation that quotes the
+# paper saying it, e.g. a paperstore's annotations/ folder and viewer
+# dir = "papers/annotations"
+# url = "https://you.github.io/paperstore/#/{key}/{id}"
+
+[server]
+port = 8000
+# a companion editor for the notes. Set it and the map carries a signpost
+# linking to it; leave it out and the map shows no link at all.
+# edit_url = "http://127.0.0.1:8891/lab"
+# edit_label = "Edit these notes"
