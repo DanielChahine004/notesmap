@@ -4,7 +4,8 @@
 #   https://danielchahine004.github.io/danvas/?local=DanielChahine004/notesmap
 #
 # The page runs [app] (a danvas.toml among the opened files wins), reads the
-# folder or .tex file the reader picks, and follows it as they save.
+# folder the reader picks, and follows it as they save. template is the
+# "Download the template folder" link: python scripts/template_zip.py builds it.
 
 [app]
 entry = "notesmap.static:app"
@@ -14,6 +15,7 @@ files = ["notesmap.toml"]
 [local]
 # the notes' main file, when the opened files carry no notesmap.toml
 main = ["main.tex", "*.tex"]
+template = "notesmap-notes.zip"
 
 [local.write]
 # added when the opened files lack it; {main} is the main file found above
@@ -26,3 +28,4 @@ path = "{main}"
 # "Start new notes": copied from this repo into a folder the reader chooses
 "main.tex" = "src/notesmap/templates/main.tex"
 "notesmap.sty" = "src/notesmap/templates/notesmap.sty"
+"img/example.png" = "src/notesmap/templates/img/example.png"

@@ -14,17 +14,22 @@ on the field.
 
 **Nothing to install:** open
 [the notesmap page](https://danielchahine004.github.io/danvas/?local=DanielChahine004/notesmap)
-and choose the folder that holds your notes (or just the `.tex` file), or
-click **Start new notes in a folder**. Your files are read by that browser
+and choose the folder that holds your notes (`main.tex`, `notesmap.sty` and
+the pictures in `img/`). No notes yet? Download
+[the template folder](https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
+(also linked on that page), unzip it, and choose the `notes` folder inside:
+its `main.tex` shows one of everything the notes can hold (a programme with
+a picture, a paper, an arrow between programmes, a conference with a
+deadline, a loose paper), ready to replace with your own. Your files are read by that browser
 tab and never uploaded. In Chrome or Edge the map follows every save, and the
 page offers to reopen the same folder next time; in Firefox or Safari, drop
 the folder on the map again after saving. The first visit takes a little
 while to load Python into the page.
 
 **Writing in Overleaf:**
-[Start in Overleaf](https://www.overleaf.com/docs?snip_uri%5B%5D=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/src/notesmap/templates/main.tex&snip_name%5B%5D=main.tex&snip_uri%5B%5D=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/src/notesmap/templates/notesmap.sty&snip_name%5B%5D=notesmap.sty&main_document=main.tex)
-makes a new Overleaf project with the starter notes (`main.tex`) and
-`notesmap.sty`, which the PDF needs. Put pictures in an `img` folder there.
+[Start in Overleaf](https://www.overleaf.com/docs?zip_uri=https://raw.githubusercontent.com/DanielChahine004/notesmap/main/notesmap-notes.zip)
+makes a new Overleaf project from the template folder: `main.tex`,
+`notesmap.sty` (which the PDF needs) and `img/`, where pictures go.
 To see the map, link the project to GitHub (Overleaf: Menu → GitHub; a paid
 or institutional Overleaf plan), then open
 `https://danielchahine004.github.io/danvas/?repo=YOU/REPO&with=DanielChahine004/notesmap`
