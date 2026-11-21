@@ -58,6 +58,7 @@ class Board:
         self.canvas, self.cfg, self.src, self.conv, self.map_mode = canvas, cfg, source, conv, map_mode
         self.lock = threading.RLock()
         self.panels: dict[str, object] = {}       # group key -> panel
+        self.custom_panels: dict[str, tuple] = {}  # [custom] name -> (panel, its document)
         self.table_panels: dict[str, tuple] = {}  # [tables] key -> (table panel, its rows)
         self.owner: dict[str, str] = {}           # any entry key -> its group key
         self.props: dict[str, dict] = {}
@@ -202,6 +203,7 @@ class Board:
                         self.props[key] = props
                         self.panels[key].update(**props)
             self._tables(groups)
+            self._custom(groups)
             self.notes = notes
             self._arrows(notes)
             self._match()                         # the box learns the new notes
@@ -599,6 +601,44 @@ class Board:
         self.where.pop(key, None)
 
     # --- placement ----------------------------------------------------------------
+
+    def _notes_json(self, groups) -> list[dict]:
+        """The notes as plain data for a [custom] page: one entry per programme."""
+        txt = lambda s: self.conv.to_text(s or "")
+        out = []
+        for key, (title, node, papers) in groups.items():
+            loc = node.location if node else None
+            out.append({
+                "key": key, "title": txt(title),
+                "place": loc.place if loc else None,
+                "lat": loc.lat if loc else None, "lon": loc.lon if loc else None,
+                "thumb": self._image(node.thumb) if node else None,
+                "papers": [{"key": p.key, "title": txt(p.title), "year": p.year, "link": p.link,
+                            "thumb": self._image(p.thumb)} for p in papers],
+            })
+        return out
+
+    def _custom(self, groups) -> None:
+        """Each [custom.<name>]: the page at `html`, with window.NOTES set before it runs."""
+        if not self.cfg.custom:
+            return
+        import json
+        data = json.dumps(self._notes_json(groups)).replace("</", "<\\/")
+        inject = f"<script>window.NOTES = {data};</script>"
+        for name, spec in self.cfg.custom.items():
+            page = self.cfg.resolve(spec["html"]).read_text(encoding="utf-8")
+            m = re.search(r"<head[^>]*>", page, re.I)
+            doc = page[:m.end()] + inject + page[m.end():] if m else inject + page
+            have = self.custom_panels.get(name)
+            if have is None:
+                x, y, w, h = spec["at"]
+                panel = self.canvas.custom(html=doc, name=f"custom_{name}", x=x, y=y, w=w, h=h,
+                                           frame=spec.get("frame", True), keep_mounted=True,
+                                           forward_wheel=not spec.get("wheel", False))
+                self.custom_panels[name] = (panel, doc)
+            elif have[1] != doc:
+                have[0].update(html=doc)
+                self.custom_panels[name] = (have[0], doc)
 
     def _draw_map(self) -> None:
         src = self.cfg.resolve(self.cfg.map_image) if self.cfg.map_image else \

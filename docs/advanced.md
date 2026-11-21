@@ -74,6 +74,7 @@ Everything lives in `notesmap.toml`; `notesmap init` writes an annotated copy.
 | `[claims]` | annotation files and a viewer URL: `\claim{Key/id}` after a sentence links it to the quote that backs it ([paperstore](https://github.com/DanielChahine004/paperstore)), and `check` fails on one that is missing; `figures` (a folder of `<Key>/<id>.png`, e.g. a paperstore's `figures/`) lets `\claimfig{Key/id}` show a box annotation's picture with its label and page |
 | `[map]` | the map image (any equirectangular image) and its width |
 | `[tables.<Key>]` | turns a programme's tabulars into a sortable table panel, or a radar (`view = "radar"` or `"detectors"`) |
+| `[custom.<name>]` | a page of your own (HTML/JS) as a panel on the map, handed the notes as data |
 | `[server]` | port and the companion editor link |
 
 **Macros:** `[latex.macros]` takes templates (`kg = "{1} kg"`); for anything
@@ -82,7 +83,7 @@ more, a plugin module with `register(converter)`.
 **Not LaTeX?** `[source] parser = "mynotes:parse"` points at a Python function
 that returns the notes; `examples/markdown/` is a working one.
 
-Table and radar panels, custom parsers and scripted board checks follow.
+Table and radar panels, your own panels, custom parsers and scripted board checks follow.
 
 ## Table and radar panels
 
@@ -93,6 +94,31 @@ Table and radar panels, custom parsers and scripted board checks follow.
 | `[tables.<Key>] view = "detectors"` | the rows of a table panel on a radar of chosen lower-is-better columns (`axes` maps column to label), each linear in its own units from 0 to `max` at the rim; `reference` names the set drawn as dotted outlines, `simulated` the set drawn dashed, `alternates` an axis a button swaps, `initial` the rows drawn at first. `selector` names the table panel whose tick boxes choose what is drawn; that table also gets a Star column (the row's size on these axes) |
 | `[tables.<Key>] reference_label` | the label on the radar's tick box for the `reference` set; defaults to the set's name |
 | `[tables.<Key>] panel` | the programme panel shows only these paragraphs (by heading); the rest stays in the PDF |
+
+## Your own panels
+
+`[custom.<name>]` puts any HTML page from your notes repo on the canvas, so a
+new view (a globe, a timeline, a citation graph) is one file, with no change
+to notesmap:
+
+```toml
+[custom.globe]
+at = [3000, 4700, 3000, 3000]   # x, y, width, height on the canvas
+html = "globe.html"             # relative to notesmap.toml
+frame = false                   # optional: no card around it (default true)
+wheel = true                    # optional: the page gets the mouse wheel instead of the canvas
+```
+
+Before the page's own scripts run, `window.NOTES` holds one entry per
+programme: `{key, title, place, lat, lon, thumb, papers: [{key, title, year,
+link, thumb}]}` (`thumb` is an image as a data URL, `lat`/`lon` are null
+without a `\location`). The page is rebuilt when the notes change.
+
+It runs in a sandboxed frame: scripts, images and libraries from a CDN work;
+an image you read pixels from needs CORS (`crossOrigin = "anonymous"`). The
+panel can be zero-sized when the page first runs, so measure it when you
+draw, not once at the start. [examples/custom/globe.html](../examples/custom/globe.html)
+is a worked example: the programmes as cards on a spinning 3D globe.
 
 ## Your own parser
 

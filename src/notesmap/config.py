@@ -42,6 +42,7 @@ class Config:
     unplaced: list[int] = field(default_factory=lambda: [400, 3500])
     map_fixed: dict[str, list] = field(default_factory=dict)  # key -> [x, y] or [x, y, width], no pin
     # [tables]
+    custom: dict[str, dict] = field(default_factory=dict)  # name -> {at, html, frame, wheel}: your own page as a panel
     tables: dict[str, dict] = field(default_factory=dict)  # key -> {at, flags, plain, derive}: a table panel
     # [check]
     bib: str = ""                                # BibTeX file to cross-check \doi{} against
@@ -123,7 +124,18 @@ def load(path: Path | None) -> Config:
         if unknown:
             raise SystemExit(f"{path}: unknown key(s) in [tables.{key}]: {', '.join(sorted(unknown))}")
         cfg.tables[key] = spec
-    extra = set(data) - set(_SECTIONS) - {"tables"}
+    # [custom.<name>]: a page of your own (HTML/JS) as a panel, handed the notes as window.NOTES
+    for name, spec in data.get("custom", {}).items():
+        unknown = set(spec) - {"at", "html", "frame", "wheel"}
+        if unknown:
+            raise SystemExit(f"{path}: unknown key(s) in [custom.{name}]: {', '.join(sorted(unknown))}")
+        at = spec.get("at")
+        if not (isinstance(at, list) and len(at) == 4 and all(isinstance(v, (int, float)) for v in at)):
+            raise SystemExit(f"{path}: [custom.{name}] at must be [x, y, width, height]")
+        if not isinstance(spec.get("html"), str):
+            raise SystemExit(f"{path}: [custom.{name}] needs html = \"path/to/page.html\"")
+        cfg.custom[name] = spec
+    extra = set(data) - set(_SECTIONS) - {"tables", "custom"}
     if extra:
         raise SystemExit(f"{path}: unknown section(s): {', '.join(sorted(extra))}")
     return cfg

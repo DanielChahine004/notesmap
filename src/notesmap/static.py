@@ -36,6 +36,7 @@ def files(config: str = CONFIG) -> list[str]:
     out.append(cfg.get("check", {}).get("bib"))
     claims = cfg.get("claims", {}).get("dir")
     out.append(claims + "/" if claims else None)
+    out += [spec.get("html") for spec in cfg.get("custom", {}).values()]
     for spec in (cfg.get("source", {}).get("parser"), *cfg.get("latex", {}).get("plugins", [])):
         if spec:
             out.append(spec.split(":")[0].replace(".", "/") + ".py")
